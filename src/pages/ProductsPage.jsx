@@ -4,11 +4,11 @@ import { useDebounce } from "../hooks/useDebounce";
 
 import SearchBar from "../components/SearchBar";
 import SortDropdown from "../components/SortDropdown";
-import CategoryDropdown from "../components/CategoryDropdown";
 import PriceRangeFilter from "../components/PriceRangeFilter";
 import ProductGrid from "../components/ProductGrid";
 import Pagination from "../components/Pagination";
 import QuickViewModal from "../components/QuickViewModal";
+import CategoryDropdown from "../components/CategoryDropDown";
 
 const LIMIT = 20;
 const TOTAL_PRODUCTS_ESTIMATE = 200;
