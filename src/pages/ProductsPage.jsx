@@ -10,6 +10,9 @@ import Pagination from "../components/Pagination";
 import QuickViewModal from "../components/QuickViewModal";
 import CategoryDropdown from "../components/CategoryDropDown";
 
+import EmptyState from "../components/EmptyState";
+import ErrorState from "../components/ErrorState";
+
 const LIMIT = 20;
 const TOTAL_PRODUCTS_ESTIMATE = 200;
 
@@ -95,10 +98,20 @@ const ProductsPage = () => {
       </div>
 
       <main className="max-w-6xl mx-auto px-4 mt-6">
-        {isLoading && <p>Loading...</p>}
-        {error && <p className="text-red-500">{error}</p>}
+        {!isLoading && !error && sortedProducts.length === 0 && <EmptyState />}
 
-        {!isLoading && !error && (
+        {error && (
+          <ErrorState
+            message={error}
+            onRetry={() => {
+              setError(null);
+              setProducts([]);
+              setCurrentPage(1);
+            }}
+          />
+        )}
+
+        {!isLoading && !error && sortedProducts.length > 0 && (
           <ProductGrid
             products={sortedProducts}
             onQuickView={setSelectedProduct}
